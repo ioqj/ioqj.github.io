@@ -1,11 +1,67 @@
 <!DOCTYPE html>
 <html>
-  <head>
-		<meta charset="UTF-8">
-    <title>test</title>
-    <link rel="icon" href="/favicon.ico">
-  </head>
-  <body>
-    <h1>This is my page!</h1>
-  </body>
+    <head>
+        <meta charset="utf-8">
+        <title>sample</title>
+        <style>
+            html {
+                background-color: #000000;
+            }
+
+            h1 {
+                font-size: 32px;
+                color: #ffffff;
+            }
+
+            h2 {
+                font-size: 24px;
+                color: #ffffff;
+            }
+
+            p {
+                color: #ffffff;
+                font-family: serif;
+            }
+
+            p#nowDate {
+                font-size: 24px;
+            }
+
+            p.memo {
+                font-size: 8px;
+            }
+        </style>
+        <script language="javascript">
+        function setNowDate(){
+            let nowDate = new Date();
+            let year = nowDate.getFullYear();
+            let month = nowDate.getMonth() + 1;
+            let date = nowDate.getDate();
+            let hours = nowDate.getHours();
+            let minutes = setTwoLength(nowDate.getMinutes());
+            let seconds = setTwoLength(nowDate.getSeconds());
+            let msg = "今日は" + year + "年" + month + "月" + date + "日、現在の時刻は" + hours + "時" + minutes + "分" + seconds + "秒です。";
+            document.getElementById("nowDate").innerHTML = msg;
+        };
+
+        function setTwoLength(num){
+            let ret;
+            if (num < 10) {
+                ret = "0" + num;
+            } else {
+                ret = num;
+            }
+            
+            return ret;
+        };
+
+        setInterval(setNowDate,500);
+        </script>
+    </head>
+    <body>
+        <h1>ようこそ :)</h1>
+        <h2>今の時間</h2>
+        <p id="nowDate">データ取得中...</p>
+        <p class="memo">※0.5秒ごとに更新しているので、実際の時刻と多少の差があります。</p>
+    </body>
 </html>
